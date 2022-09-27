@@ -1,5 +1,3 @@
-import { SerializationContext } from "./es-serializer";
-
 export interface ISerializationOptions {
     indent?: number;
     es?: number;
@@ -32,8 +30,8 @@ export interface ISerializerOptions {
 }
 
 export interface ISerializer {
-    addToContext(context: SerializationContext);
-    serialize(context: SerializationContext, ast: IAst, opts: ISerializationOptions): ISerializationResult;
+    addToContext(context: ISerializationContext): void;
+    serialize(context: ISerializationContext, ast: IAst, opts: ISerializationOptions): ISerializationResult;
     override?(type: string, otherOptions: ISerializerOptions): boolean;
 }
 

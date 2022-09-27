@@ -1,10 +1,10 @@
 import { ISerializationOptions, ISerializationResult, ISerializationContext } from "../../../interfaces";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function BinaryExpression(context: ISerializationContext, ast: import("estree").BinaryExpression, opts: ISerializationOptions): ISerializationResult {
+export function AssignmentExpression(context: ISerializationContext, ast: import("estree").AssignmentExpression, opts: ISerializationOptions): ISerializationResult {
     const d = opts.indent;
-    const indent = opts.indent !== undefined || ast.operator[0] == "i";
-    if (d !== undefined) {
+    const indent = d !== undefined;
+    if (indent) {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         opts.indent!++;
     }
