@@ -3,6 +3,9 @@ import { ISerializationOptions, ISerializationResult, ISerializationContext } fr
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function CallExpression(context: ISerializationContext, ast: import("estree").CallExpression, opts: ISerializationOptions): ISerializationResult {
     let code = context.serialize(ast.callee, opts).code;
+    if (ast.callee.type == "BinaryExpression" || ast.callee.type == "LogicalExpression" || ast.callee.type == "SequenceExpression") {
+        code = "(" + code + ")";
+    }
     const d = opts.indent;
     if (d !== undefined) {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -18,7 +21,12 @@ export function CallExpression(context: ISerializationContext, ast: import("estr
         } else {
             code += ", ";
         }
-        code += context.serialize(c, opts).code;
+        const cc = context.serialize(c, opts).code;
+        if (ast.callee.type == "SequenceExpression") {
+            code += "(" + cc + ")";
+        } else {
+            code += cc;
+        }
     }
     code += ")";
     return { code, ast };

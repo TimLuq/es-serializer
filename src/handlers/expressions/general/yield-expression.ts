@@ -7,7 +7,7 @@ export function YieldExpression(context: ISerializationContext, ast: import("est
     }
     if (ast.argument) {
         code += " ";
-        return { code: code + context.serialize(ast.argument, opts), ast };
+        return { code: code + context.serialize(ast.argument, opts).code, ast };
     } else {
         return { code, ast };
     }

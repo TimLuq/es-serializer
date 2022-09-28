@@ -7,8 +7,8 @@
             "request": "launch",
             "runtimeArgs": [
                 "--inspect-brk",
-                "${workspaceRoot}/test/runner.js",
-                "--runInBand"
+                "${workspaceRoot}/node_modules/uvu/bin.js",
+                "test/specs"
             ],
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen"

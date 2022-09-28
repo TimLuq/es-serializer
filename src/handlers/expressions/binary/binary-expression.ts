@@ -10,7 +10,12 @@ export function BinaryExpression(context: ISerializationContext, ast: import("es
     }
     const left = context.serialize(ast.left, opts).code;
     const right = context.serialize(ast.right, opts).code;
-    let code = left;
+    let code: string;
+    if (ast.left.type == "BinaryExpression" || ast.left.type == "LogicalExpression" || ast.left.type == "SequenceExpression") {
+        code = "(" + left + ")";
+    } else {
+        code = left;
+    }
     if (indent) {
         code += " ";
     }
@@ -19,6 +24,10 @@ export function BinaryExpression(context: ISerializationContext, ast: import("es
         opts.indent = d;
         code += " ";
     }
-    code += right;
+    if (ast.right.type == "BinaryExpression" || ast.right.type == "LogicalExpression" || ast.right.type == "SequenceExpression") {
+        code += "(" + right + ")";
+    } else {
+        code += right;
+    }
     return { code, ast };
 }

@@ -13,7 +13,12 @@ export function SequenceExpression(context: ISerializationContext, ast: import("
         } else {
             code += ", ";
         }
-        code += context.serialize(c, opts).code;
+        const cc = context.serialize(c, opts).code;
+        if (c.type == "SequenceExpression") {
+            code += "(" + cc + ")";
+        } else {
+            code += cc;
+        }
     }
     return { code, ast };
 }

@@ -2,7 +2,7 @@ import { ISerializationContext, ISerializationOptions, ISerializationResult } fr
 
 export function BreakStatement(context: ISerializationContext, ast: import("estree").BreakStatement, opts: ISerializationOptions): ISerializationResult {
     if (ast.label) {
-        return { code: "break " + context.serialize(ast.label, opts) + ";", ast };
+        return { code: "break " + context.serialize(ast.label, opts).code + ";", ast };
     } else {
         return { code: "break;", ast };
     }
