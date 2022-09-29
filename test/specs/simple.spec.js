@@ -59,5 +59,33 @@ test("simple class", () => {
     const res = serialize(input);
     assert.is(res, "class TestClass {\n\tconstructor() {\n\t\tthis.a = 0;\n\t}\n\tset something(a) {\n\t\tthis.a = a;\n\t}\n\tget something() {\n\t\treturn this.a;\n\t}\n\tget_something() {\n\t\treturn this.a;\n\t}\n\tset_something(a) {\n\t\tthis.a = a;\n\t}\n}");
 });
+test("simple if-else", () => {
+    const input = parse`if (a == 0 && (b == 1 || c == 2)) {
+        let i = 0;
+        while (a < b) {
+            a++;
+            i++;
+        }
+        console.log(i);
+    } else {
+        const m = "test";
+        console.log(m);
+    }`;
+    const res = serialize(input);
+    const expected = `
+if (a == 0 && (b == 1 || c == 2)) {
+\tlet i = 0;
+\twhile (a < b) {
+\t\ta++;
+\t\ti++;
+\t}
+\tconsole.log(i);
+} else {
+\tconst m = "test";
+\tconsole.log(m);
+}
+`.trim();
+    assert.is(res, expected);
+});
 
 test.run();
