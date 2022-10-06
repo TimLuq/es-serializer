@@ -22,5 +22,6 @@ export function ClassBody(context: ISerializationContext, ast: import("estree").
         code += indent + context.serialize(b, opts).code;
     }
     code += m + "}";
+    opts.indent = d;
     return { code, ast };
 }

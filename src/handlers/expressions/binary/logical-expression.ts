@@ -3,7 +3,7 @@ import { ISerializationOptions, ISerializationResult, ISerializationContext } fr
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function LogicalExpression(context: ISerializationContext, ast: import("estree").LogicalExpression, opts: ISerializationOptions): ISerializationResult {
     const d = opts.indent;
-    const indent = opts.indent !== undefined || ast.operator[0] == "i";
+    const indent = d !== undefined || ast.operator[0] == "i";
     if (d !== undefined) {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         opts.indent!++;

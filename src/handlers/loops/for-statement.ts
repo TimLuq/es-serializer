@@ -8,13 +8,18 @@ export function ForStatement(context: ISerializationContext, ast: import("estree
     } else {
         code += "(";
     }
+    let semi = true;
     if (ast.init) {
-        code += context.serialize(ast.init, opts).code;
+        const c = context.serialize(ast.init, opts).code;
+        code += c;
+        semi = !c.endsWith(";");
     }
-    if (indent && ast.test) {
-        code += "; ";
-    } else {
-        code += ";";
+    if (semi) {
+        if (indent && ast.test) {
+            code += "; ";
+        } else {
+            code += ";";
+        }
     }
     if (ast.test) {
         code += context.serialize(ast.test, opts).code;

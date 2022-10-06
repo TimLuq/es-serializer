@@ -35,5 +35,6 @@ export function NewExpression(context: ISerializationContext, ast: import("estre
         }
     }
     code += ")";
+    opts.indent = d;
     return { code, ast };
 }

@@ -29,5 +29,6 @@ export function CallExpression(context: ISerializationContext, ast: import("estr
         }
     }
     code += ")";
+    opts.indent = d;
     return { code, ast };
 }
