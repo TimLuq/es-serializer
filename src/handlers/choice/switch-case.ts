@@ -8,11 +8,6 @@ export function SwitchCase(context: ISerializationContext, ast: import("estree")
     } else {
         code = "default:";
     }
-    if (opts.indent !== undefined) {
-        code += " (";
-    } else {
-        code += "(";
-    }
 
     let ident = "";
     const d = opts.indent;
