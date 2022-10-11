@@ -13,7 +13,7 @@ export function Literal(context: ISerializationContext, ast: import("estree").Li
         return { code: (ast.value as bigint).toString() + "n" };
     }
     if (t == "boolean") {
-        return { code: t ? "true" : "false" };
+        return { code: (ast.value as boolean) ? "true" : "false" };
     }
     if (t == "undefined") {
         return { code: "undefined" };
