@@ -3,7 +3,15 @@ import { ISerializationOptions, ISerializationResult, ISerializationContext } fr
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function CallExpression(context: ISerializationContext, ast: import("estree").CallExpression, opts: ISerializationOptions): ISerializationResult {
     let code = context.serialize(ast.callee, opts).code;
-    if (ast.callee.type == "BinaryExpression" || ast.callee.type == "LogicalExpression" || ast.callee.type == "SequenceExpression") {
+    if (
+        ast.callee.type == "ArrowFunctionExpression" ||
+            ast.callee.type == "AwaitExpression" ||
+            ast.callee.type == "AssignmentExpression" || 
+            ast.callee.type == "BinaryExpression" ||
+            ast.callee.type == "FunctionExpression" ||
+            ast.callee.type == "LogicalExpression" ||
+            ast.callee.type == "SequenceExpression"
+    ) {
         code = "(" + code + ")";
     }
     const d = opts.indent;
