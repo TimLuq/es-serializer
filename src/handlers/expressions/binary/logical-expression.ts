@@ -11,7 +11,7 @@ export function LogicalExpression(context: ISerializationContext, ast: import("e
     const left = context.serialize(ast.left, opts).code;
     const right = context.serialize(ast.right, opts).code;
     let code: string;
-    if (ast.left.type == "LogicalExpression" || ast.left.type == "SequenceExpression") {
+    if (ast.left.type == "LogicalExpression" || ast.left.type == "SequenceExpression" || ast.left.type == "AssignmentExpression" || ast.left.type == "AwaitExpression") {
         code = "(" + left + ")";
     } else {
         code = left;
@@ -24,7 +24,7 @@ export function LogicalExpression(context: ISerializationContext, ast: import("e
         opts.indent = d;
         code += " ";
     }
-    if (ast.right.type == "LogicalExpression" || ast.right.type == "SequenceExpression") {
+    if (ast.right.type == "LogicalExpression" || ast.right.type == "SequenceExpression" || ast.right.type == "AssignmentExpression" || ast.right.type == "AwaitExpression") {
         code += "(" + right + ")";
     } else {
         code += right;

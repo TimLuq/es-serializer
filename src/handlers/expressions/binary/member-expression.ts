@@ -3,7 +3,7 @@ import { ISerializationOptions, ISerializationResult, ISerializationContext } fr
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function MemberExpression(context: ISerializationContext, ast: import("estree").MemberExpression, opts: ISerializationOptions): ISerializationResult {
     let code = context.serialize(ast.object, opts).code;
-    if (ast.object.type == "BinaryExpression" || ast.object.type == "LogicalExpression" || ast.object.type == "SequenceExpression") {
+    if (ast.object.type == "BinaryExpression" || ast.object.type == "LogicalExpression" || ast.object.type == "SequenceExpression" || ast.object.type == "AssignmentExpression" || ast.object.type == "AwaitExpression") {
         code = "(" + code + ")";
     }
     if (ast.computed) {

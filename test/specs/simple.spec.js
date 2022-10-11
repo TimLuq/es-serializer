@@ -73,7 +73,7 @@ test("simple class", () => {
 test("simple if-else", () => {
     const input = parse`if (a == 0 && (b == 1 || c == 2)) {
         let i = 0;
-        while (a < b) {
+        while (a < b || (i = a) == 0) {
             a++;
             i++;
         }
@@ -86,7 +86,7 @@ test("simple if-else", () => {
     const expected = `
 if (a == 0 && (b == 1 || c == 2)) {
 \tlet i = 0;
-\twhile (a < b) {
+\twhile (a < b || (i = a) == 0) {
 \t\ta++;
 \t\ti++;
 \t}
