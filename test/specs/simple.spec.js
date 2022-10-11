@@ -2,7 +2,7 @@ import { parse, serialize } from "../ctx.js";
 
 import * as assert from "uvu/assert";
 import { suite } from "uvu";
-const test = suite("empty definitions");
+const test = suite("simple definitions");
 
 test("simple arrow function", () => {
     const input = parse`(a, b, c, ...other) => {
@@ -37,6 +37,17 @@ test("simple template string", () => {
     const input = parse`${"`abc${123}abc`"}`;
     const res = serialize(input);
     assert.is(res, "`abc${123}abc`;");
+});
+test("simple iife", () => {
+    const input = parse`(function(o) {
+        let n = 0;
+        for (const k in o) {
+            n++;
+        }
+        return n;
+    })({a:0,b:true})`;
+    const res = serialize(input);
+    assert.is(res, "(function(o) {\n\tlet n = 0;\n\tfor (const k in o) {\n\t\tn++;\n\t}\n\treturn n;\n})({ a: 0, b: true });");
 });
 test("simple class", () => {
     const input = parse`class TestClass {
