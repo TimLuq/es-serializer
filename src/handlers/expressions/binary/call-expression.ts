@@ -8,6 +8,7 @@ export function CallExpression(context: ISerializationContext, ast: import("estr
             ast.callee.type == "AwaitExpression" ||
             ast.callee.type == "AssignmentExpression" || 
             ast.callee.type == "BinaryExpression" ||
+            ast.callee.type == "ConditionalExpression" ||
             ast.callee.type == "FunctionExpression" ||
             ast.callee.type == "LogicalExpression" ||
             ast.callee.type == "SequenceExpression"
