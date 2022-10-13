@@ -11,7 +11,7 @@ export function BinaryExpression(context: ISerializationContext, ast: import("es
     const left = context.serialize(ast.left, opts).code;
     const right = context.serialize(ast.right, opts).code;
     let code: string;
-    if (ast.left.type == "BinaryExpression" || ast.left.type == "LogicalExpression" || ast.left.type == "SequenceExpression" || ast.left.type == "AssignmentExpression" || ast.left.type == "AwaitExpression" ||  ast.left.type == "YieldExpression") {
+    if (ast.left.type == "BinaryExpression" || ast.left.type == "LogicalExpression" || ast.left.type == "SequenceExpression" || ast.left.type == "AssignmentExpression" || ast.left.type == "AwaitExpression" ||  ast.left.type == "YieldExpression" || ast.left.type == "ConditionalExpression") {
         code = "(" + left + ")";
     } else {
         code = left;
@@ -24,7 +24,7 @@ export function BinaryExpression(context: ISerializationContext, ast: import("es
         opts.indent = d;
         code += " ";
     }
-    if (ast.right.type == "BinaryExpression" || ast.right.type == "LogicalExpression" || ast.right.type == "SequenceExpression" || ast.right.type == "AssignmentExpression" || ast.right.type == "AwaitExpression" ||  ast.right.type == "YieldExpression") {
+    if (ast.right.type == "BinaryExpression" || ast.right.type == "LogicalExpression" || ast.right.type == "SequenceExpression" || ast.right.type == "AssignmentExpression" || ast.right.type == "AwaitExpression" ||  ast.right.type == "YieldExpression" || ast.right.type == "ConditionalExpression") {
         code += "(" + right + ")";
     } else {
         code += right;
