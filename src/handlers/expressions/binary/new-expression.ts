@@ -5,7 +5,7 @@ export function NewExpression(context: ISerializationContext, ast: import("estre
     let code = "new";
     const callee = context.serialize(ast.callee, opts).code;
     const d = opts.indent;
-    if (ast.callee.type == "BinaryExpression" || ast.callee.type == "LogicalExpression" || ast.callee.type == "SequenceExpression" || ast.callee.type == "AssignmentExpression" || ast.callee.type == "AwaitExpression") {
+    if (ast.callee.type == "BinaryExpression" || ast.callee.type == "LogicalExpression" || ast.callee.type == "SequenceExpression" || ast.callee.type == "AssignmentExpression" || ast.callee.type == "AwaitExpression" ||  ast.callee.type == "YieldExpression") {
         if (d !== undefined) {
             code += " ";
         }

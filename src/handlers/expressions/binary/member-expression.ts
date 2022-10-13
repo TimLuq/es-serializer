@@ -11,7 +11,8 @@ export function MemberExpression(context: ISerializationContext, ast: import("es
             ast.object.type == "ConditionalExpression" ||
             ast.object.type == "FunctionExpression" ||
             ast.object.type == "LogicalExpression" ||
-            ast.object.type == "SequenceExpression"
+            ast.object.type == "SequenceExpression" ||
+            ast.object.type == "YieldExpression"
     ) {
         code = "(" + code + ")";
     }
